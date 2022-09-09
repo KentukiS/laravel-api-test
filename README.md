@@ -7,7 +7,7 @@
 ## Build project
 <p>docker-compose up --build</p>
 
-## After build
+## After building
 <p>docker-compose exec app php artisan key:generate</p>
 <p>docker-compose exec app php artisan config:cache</p>
 
