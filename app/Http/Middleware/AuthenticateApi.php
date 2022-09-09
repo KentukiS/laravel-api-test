@@ -2,20 +2,29 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\DB;
 
-class Authenticate extends Middleware
+class AuthenticateApi extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
-    {
-        if (! $request->expectsJson()) {
-            return route('login');
+   protected function authenticate($request, array $guards)
+   {
+        $token = $request->query('api_token');
+        if(empty($token)){
+            $token = $request->input('api_token');
         }
-    }
+        if(empty($token)){
+            $token = $request->bearerToken();
+        }
+
+        if($token === config('apitokens')[0]) return;
+
+        $userTokens = DB::table('users')->pluck('api_token');
+        foreach ($userTokens as $userToken) {
+            if($userToken === $token) return;
+        }
+
+        $this->unauthenticated($request, $guards);
+   }
 }
