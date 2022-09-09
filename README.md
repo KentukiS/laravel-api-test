@@ -1,21 +1,21 @@
 ### Let's start
-git clone https://github.com/KentukiS/laravel-api-service.git
+<p>git clone https://github.com/KentukiS/laravel-api-service.git</p>
 
 ## Create new folder and run command inside
-docker run --rm -v $(pwd):/app composer install
+<p>docker run --rm -v $(pwd):/app composer install</p>
 
 ## Build project
-docker-compose up --build
+<p>docker-compose up --build</p>
 
 ## After build
-docker-compose exec app php artisan key:generate
-docker-compose exec app php artisan config:cache
+<p>docker-compose exec app php artisan key:generate</p>
+<p>docker-compose exec app php artisan config:cache</p>
 
 ## Enter DB container and create user with privileges
-mysql -u root -p
-GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY '123456';
-FLUSH PRIVILEGES;
-EXIT;
-exit
+<p>mysql -u root -p</p>
+<p>GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY '123456';</p>
+<p>FLUSH PRIVILEGES;</p>
+<p>EXIT;</p>
+<p>exit</p>
 
 ## Rename .env.example file in "/" directory in the "app" container and change DB configuration
