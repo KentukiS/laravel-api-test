@@ -1,7 +1,7 @@
 ### Let's start
 <p>git clone https://github.com/KentukiS/laravel-api-service.git</p>
 
-## Create new folder and run command inside
+## run command inside project folder
 <p>docker run --rm -v $(pwd):/app composer install</p>
 
 ## Build project
